@@ -1,5 +1,9 @@
 require 'sinatra'
 
 get '/' do
-  p 'hello world'
+  p SLACK_TOKEN
+end
+
+post '/badge' do
+  
 end
