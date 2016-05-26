@@ -1,9 +1,9 @@
 require 'sinatra'
 
 get '/' do
-  p SLACK_TOKEN
+  p ENV["SLACK_TOKEN"]
 end
 
 post '/badge' do
-  
+
 end
