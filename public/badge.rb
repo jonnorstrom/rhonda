@@ -1,5 +1,6 @@
-class Badge
 
+
+class Badge
   attr_reader :quantity, :type, :person, :note
 
   def initialize(hash)
