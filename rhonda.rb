@@ -10,7 +10,7 @@ end
 post '/badge' do
   # made badge in database that I don't have set up yet
   badge = Badge.new(Parser.get_badge_data(params[:text]))
-  if badge.note = "for being great"
+  if badge.note == "for being great"
     {
     "text": "You think #{badge.person} is pretty great",
     "attachments": [
