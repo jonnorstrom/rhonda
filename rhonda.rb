@@ -6,5 +6,5 @@ end
 
 post '/badge' do
   # made badge in database that I don't have set up yet
-  p params[:text]
+  p Badge.new(Parser.get_badge_data(params[:text]))
 end
