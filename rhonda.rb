@@ -9,7 +9,7 @@ end
 
 post '/badge' do
   # made badge in database that I don't have set up yet
-  "HEY YA'LL"
+  params
 end
 
 
