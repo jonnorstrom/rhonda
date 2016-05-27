@@ -8,6 +8,7 @@ get '/' do
 end
 
 post '/badge' do
+  binding.pry
   # made badge in database that I don't have set up yet
   "YOOOO DUDE"
 end
