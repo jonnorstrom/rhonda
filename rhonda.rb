@@ -6,5 +6,5 @@ end
 
 post '/badge' do
   # made badge in database that I don't have set up yet
-  p params
+  p params[:text]
 end
