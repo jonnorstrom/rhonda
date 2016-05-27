@@ -9,7 +9,14 @@ end
 
 post '/badge' do
   # made badge in database that I don't have set up yet
-  params[:text]
+  {
+    "text": "#{params[:text]}",
+    "attachments": [
+      {
+        "text":"And you gave him a star"
+      }
+    ]
+  }
 end
 
 
