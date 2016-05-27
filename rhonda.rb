@@ -13,7 +13,7 @@ post '/badge' do
   badge = Badge.new(Parser.get_badge_data(message_from_slack))
   # content_type :json
   # {text: "You think #{badge.person} is pretty great"}.to_json
-  {person: badge.person}.to_json
+  badge.to_json
 end
 
 post '/gateway' do
