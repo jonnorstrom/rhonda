@@ -1,5 +1,5 @@
 require './rhonda'
-# require 'dotenv'
-#
-# Dotenv.load
+require 'dotenv'
+
+Dotenv.load
 run Sinatra::Application
