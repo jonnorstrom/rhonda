@@ -9,6 +9,10 @@ end
 post '/badge' do
   # made badge in database that I don't have set up yet
   message_from_slack = params[:text]
+  p "--token--#{params[:token]}"
+  p "--team_domain--#{params[:team_domain]}"
+  p "--channel_name--#{params[:channel_name]}"
+  p "--user_name--#{params[:user_name]}"
   badge = Badge.new(Parser.get_badge_data(message_from_slack))
   "Thank you for your feedback! You gave #{badge.person} some #{badge.type} #{badge.note}"
 end
