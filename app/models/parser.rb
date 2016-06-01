@@ -3,6 +3,7 @@ module Parser
   def self.get_badge_data(message)
     match_data = RGX.match(message)
 
+    p match_data
     { quantity: match_data[:quantity], recipient: match_data[:recipient], reason: match_data[:reason], badge: match_data[:badge] }
   end
 end
