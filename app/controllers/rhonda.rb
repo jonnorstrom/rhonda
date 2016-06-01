@@ -18,7 +18,8 @@ post '/badge' do
                          reason: info_hash[:reason],
                          badge: info_hash[:badge])
    if badge.save
-     { "response_type": "in_channel",
+     {
+       "response_type": "in_channel",
        "attachments": [
           {
             "text": "_Thank you for your feedback!_ You gave <@U123|#{badge.recipient}> some #{badge.badge} #{badge.reason}",
@@ -27,7 +28,7 @@ post '/badge' do
             ]
           }
         ]
-      }
+      }.to_json
    else
      {"attachments": [
           {
