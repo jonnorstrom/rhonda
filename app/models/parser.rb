@@ -4,7 +4,7 @@ module Parser
     match_data = RGX.match(message)
 
     if match_data != nil
-      { quantity: match_data[:quantity], recipient: match_data[:recipient], reason: match_data[:reason], badge: match_data[:badge] }
+      { quantity: match_data[:quantity], recipient: match_data[:recipient][1..-1], reason: match_data[:reason], badge: match_data[:badge] }
     else
       Hash.new
     end
