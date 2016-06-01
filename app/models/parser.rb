@@ -3,7 +3,7 @@ module Parser
   def self.get_badge_data(message)
     match_data = RGX.match(message)
 
-    if !match_data.nil
+    if match_data != nil
       { quantity: match_data[:quantity], recipient: match_data[:recipient], reason: match_data[:reason], badge: match_data[:badge] }
     else
       return nil
