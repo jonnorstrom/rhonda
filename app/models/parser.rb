@@ -3,6 +3,8 @@ module Parser
   def self.get_badge_data(message)
     match_data = RGX.match(message)
 
+
+    ## checking to make sure match_data isn't nil - meaning the sentence was formatted correctly
     if match_data != nil
       { quantity: match_data[:quantity], recipient: match_data[:recipient][1..-1], reason: match_data[:reason], badge: match_data[:badge] }
     else

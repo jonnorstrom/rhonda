@@ -32,7 +32,7 @@ post '/badge' do
        "response_type": "in_channel",
        "attachments": [
           {
-            "text": "_Thank you for your feedback!_ You gave <@U04FF3Q46|#{badge.recipient}> some #{badge.badge} #{badge.reason}",
+            "text": "_Thank you for your feedback!_ You gave <@#{badge.recipient_id}|#{badge.recipient}> some #{badge.badge} #{badge.reason}",
             "mrkdwn_in": [
                 "text",
             ]
