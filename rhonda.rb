@@ -1,3 +1,5 @@
+require_relative './app/runner'
+
 get '/' do
 
 end
