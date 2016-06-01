@@ -5,8 +5,6 @@ module Parser
 
     if match_data != nil
       { quantity: match_data[:quantity], recipient: match_data[:recipient], reason: match_data[:reason], badge: match_data[:badge] }
-    else
-      return nil
     end
   end
 end
