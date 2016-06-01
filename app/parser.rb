@@ -1,5 +1,3 @@
-require_relative 'badge'
-
 module Parser
   RGX = /(?<quantity>\A\d+,?\d*) (?<badge>.+(?= to @)) to (?<recipient>@\S+) (?<note>.+)$/
   def self.get_badge_data(message)
