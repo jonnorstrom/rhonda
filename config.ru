@@ -1,6 +1,6 @@
-# require ::File.expand_path('../../config/environment',  __FILE__)
-# require_relative './config/environment'
-require_relative './rhonda'
+require_relative './config/environment'
+# require ::File.expand_path('/config/environment',  __FILE__)
+# require_relative './rhonda'
 require 'dotenv'
 
 # set :app_file, __FILE__
