@@ -3,14 +3,30 @@ get '/' do
 end
 
 post '/badge' do
-  # made badge in database that I don't have set up yet
   message_from_slack = params[:text]
-  p "--token--#{params[:token]}"
-  p "--team_domain--#{params[:team_domain]}"
-  p "--channel_name--#{params[:channel_name]}"
-  p "--user_name--#{params[:user_name]}"
-  badge = Badge.new(Parser.get_badge_data(message_from_slack))
-  "Thank you for your feedback! You gave #{badge.person} some #{badge.type} #{badge.note}"
+  info_hash = Parser.get_badge_data(message_from_slack)
+
+  if info_hash != nil
+    badge = Feedback.new(recipient: info_hash[:recipient],
+                         sender: params[:user_name],
+                         sender_id: params[:user_id],
+                         team_domain: params[:team_domain],
+                         team_id: params[:team_id],
+                         channel_name: params[:channel_name],
+                         channel_id: params[:channel_id],
+                         response_url: params[:response_url],
+                         text: params[:text],
+                         quantity: info_hash[:quantity],
+                         reason: info_hash[:reason],
+                         badge: info_hash[:badge])
+   if badge.save
+     "Thank you for your feedback! You gave #{badge.recipient} some #{badge.badge} #{badge.reason}"
+   else
+     "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
+   end
+ else
+   "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
+ end
 end
 
 # POTENTIAL IDEAL WORK FLOW
