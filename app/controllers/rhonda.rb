@@ -3,7 +3,7 @@ get '/' do
 end
 
 post '/badge' do
-  p ENV[SLACK_USERS_TOKEN]
+  p ENV[SLACK_TOKEN]
   message_from_slack = params[:text]
   info_hash = Parser.get_badge_data(message_from_slack)
   badge = Feedback.new(recipient: info_hash[:recipient],
