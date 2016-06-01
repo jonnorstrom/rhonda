@@ -18,9 +18,26 @@ post '/badge' do
                          reason: info_hash[:reason],
                          badge: info_hash[:badge])
    if badge.save
-     "Thank you for your feedback! You gave #{badge.recipient} some #{badge.badge} #{badge.reason}"
+     { "response_type": "in_channel",
+       "attachments": [
+          {
+            "text": "_Thank you for your feedback!_ You gave <@U123|#{badge.recipient}> some #{badge.badge} #{badge.reason}",
+            "mrkdwn_in": [
+                "text",
+            ]
+          }
+        ]
+      }
    else
-     "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
+     {"attachments": [
+          {
+            "text": "_Something went wrong, try this format:_ [#] [badge] *to* @[person] *for* [reason]",
+            "mrkdwn_in": [
+                "text",
+            ]
+          }
+        ]
+      }
    end
 end
 
