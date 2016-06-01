@@ -19,13 +19,14 @@ post '/badge' do
                          quantity: info_hash[:quantity],
                          reason: info_hash[:reason],
                          badge: info_hash[:badge])
-  end
-
-  if badge.save
-    "Thank you for your feedback! You gave #{badge.recipient} some #{badge.badge} #{badge.reason}"
-  else
-    "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
-  end
+   if badge.save
+     "Thank you for your feedback! You gave #{badge.recipient} some #{badge.badge} #{badge.reason}"
+   else
+     "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
+   end
+ else
+   "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
+ end
 end
 
 # POTENTIAL IDEAL WORK FLOW
