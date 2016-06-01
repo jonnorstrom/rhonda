@@ -24,7 +24,7 @@ post '/badge' do
    user_response = JSON.parse(response.body)
    user_response[:members].each do |member|
      if member[:name] == badge.recipient
-       id = member[:id]
+       badge.recipient_id = member[:id]
      end
    end
    if badge.save
