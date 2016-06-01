@@ -1,5 +1,3 @@
-
-
 class Badge
   attr_reader :quantity, :type, :person, :note
 
@@ -8,5 +6,4 @@ class Badge
     @person = hash[:person]
     @note = hash[:note]
   end
-
 end
