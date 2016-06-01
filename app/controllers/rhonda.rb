@@ -5,8 +5,6 @@ end
 post '/badge' do
   message_from_slack = params[:text]
   info_hash = Parser.get_badge_data(message_from_slack)
-
-  if info_hash != nil
     badge = Feedback.new(recipient: info_hash[:recipient],
                          sender: params[:user_name],
                          sender_id: params[:user_id],
@@ -24,9 +22,6 @@ post '/badge' do
    else
      "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
    end
- else
-   "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
- end
 end
 
 # POTENTIAL IDEAL WORK FLOW
