@@ -18,7 +18,7 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge])
 
-   uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_USERS_TOKEN"]}&pretty=1")
+   uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_TOKEN"]}&pretty=1")
    response = Net::HTTP.get_response(uri)
    user_response = JSON.parse(response.body)
    p user_response
