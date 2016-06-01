@@ -3,7 +3,7 @@ get '/' do
 end
 
 post '/badge' do
-  p ENV[SLACK_TOKEN]
+  p ENV["SLACK_TOKEN"]
   message_from_slack = params[:text]
   info_hash = Parser.get_badge_data(message_from_slack)
   badge = Feedback.new(recipient: info_hash[:recipient],
@@ -19,7 +19,7 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge])
 
-   uri = URI("https://slack.com/api/users.list?token=#{ENV[SLACK_USERS_TOKEN]}&pretty=1")
+   uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_USERS_TOKEN"]}&pretty=1")
    response = Net::HTTP.get_response(uri)
    user_response = JSON.parse(response.body)
    user_response[:members].each do |member|
