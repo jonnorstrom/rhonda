@@ -1,9 +1,9 @@
 module Parser
-  RGX = /(?<quantity>\A\d+,?\d*) (?<badge>.+(?= to @)) to (?<recipient>@\S+) (?<note>.+)$/
+  RGX = /(?<quantity>\A\d+,?\d*) (?<badge>.+(?= to @)) to (?<recipient>@\S+) (?<reason>.+)$/
   def self.get_badge_data(message)
     match_data = RGX.match(message)
 
-    { quantity: match_data[:quantity], person: match_data[:recipient], note: match_data[:note], type: match_data[:badge] }
+    { quantity: match_data[:quantity], recipient: match_data[:recipient], reason: match_data[:reason], badge: match_data[:badge] }
   end
 end
 
