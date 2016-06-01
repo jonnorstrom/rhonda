@@ -6,7 +6,7 @@ post '/badge' do
   message_from_slack = params[:text]
   info_hash = Parser.get_badge_data(message_from_slack)
 
-  if !info_hash.nil
+  if info_hash != nil
     badge = Feedback.new(recipient: info_hash[:recipient],
                          sender: params[:user_name],
                          sender_id: params[:user_id],
