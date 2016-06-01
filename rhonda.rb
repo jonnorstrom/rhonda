@@ -1,7 +1,3 @@
-require 'sinatra'
-require_relative './public/badge'
-require_relative './public/parser'
-
 get '/' do
 
 end
