@@ -19,12 +19,14 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge])
 
-  #  uri = URI("https://slack.com/api/users.list?token=#{ENV[SLACK_USERS_TOKEN]}&pretty=1")
-  #  response = Net::HTTP.get_response(uri)
-  #  user_response = JSON.parse(response.body)
-  #  user_response[:members].each do |member|
-  #    member[:name] == badge.recipient ?
-  #  end
+   uri = URI("https://slack.com/api/users.list?token=#{ENV[SLACK_USERS_TOKEN]}&pretty=1")
+   response = Net::HTTP.get_response(uri)
+   user_response = JSON.parse(response.body)
+   user_response[:members].each do |member|
+     if member[:name] == badge.recipient
+       id = member[:id]
+     end
+   end
    if badge.save
      uri = URI(badge.response_url)
      req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
@@ -32,7 +34,7 @@ post '/badge' do
        "response_type": "in_channel",
        "attachments": [
           {
-            "text": "_Thank you for your feedback!_ You gave <@#{badge.recipient_id}|#{badge.recipient}> some #{badge.badge} #{badge.reason}",
+            "text": "_Thank you for your feedback!_ You gave <@#{badge.recipient_id}> some #{badge.badge} #{badge.reason}",
             "mrkdwn_in": [
                 "text",
             ]

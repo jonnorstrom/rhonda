@@ -1,5 +1,6 @@
 class Feedback < ActiveRecord::Base
   validates :recipient,
+            :recipient_id,
             :sender,
             :sender_id,
             :team_domain,
@@ -12,6 +13,6 @@ class Feedback < ActiveRecord::Base
             :badge,
             :reason,
   presence: true
-  
+
   # Remember to create a migration!
 end
