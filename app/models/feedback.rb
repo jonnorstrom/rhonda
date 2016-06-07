@@ -11,7 +11,8 @@ class Feedback < ActiveRecord::Base
             :quantity,
             :badge,
             :reason,
+            :schema_version,
   presence: true
-  
+
   # Remember to create a migration!
 end
