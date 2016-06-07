@@ -23,10 +23,11 @@ post '/badge' do
   user_response = JSON.parse(response.body)
   p "BADGE RECIPIENT -- #{badge.recipient}"
   user_response["members"].each do |member|
-  p "MEMBER -- #{member}"
-    # if member[:name] == badge.recipient
-    #   badge.recipient_id = member[:id]
-    # end
+  p "MEMBER -- #{member.name}"
+    if member[:name] == badge.recipient
+      # badge.recipient_id = member[:id]
+      p "HEY THEY MATCH"
+    end
   end
 
   if badge.save
