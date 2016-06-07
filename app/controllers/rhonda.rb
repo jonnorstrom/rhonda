@@ -18,10 +18,41 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge],
                        schema_version: 1.1)
+  #  uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_TOKEN"]}&pretty=1")
+  #  response = Net::HTTP.get_response(uri)
+  #  user_response = JSON.parse(response.body)
+  #  user_response[:members].each do |member|
+  #    if member[:name] == badge.recipient
+  #      badge.recipient_id = member[:id]
+  #    end
+  #  end
    if badge.save
-     "Thank you for your feedback! You gave #{badge.recipient} some #{badge.badge} #{badge.reason}"
+     uri = URI(badge.response_url)
+     req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
+     req.body = {
+       "response_type": "ephemeral",
+       "attachments": [
+          {
+            "text": "_Thank you for your feedback!_ You gave <@#{badge.recipient_id}> some #{badge.badge} #{badge.reason}",
+            "mrkdwn_in": [
+                "text",
+            ]
+          }
+        ]
+      }.to_json
+      Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+        http.request(req)
+      end
    else
-     "Something went wrong, try this format: [#] [badge] to @[person] for [reason]"
+     {"attachments": [
+          {
+            "text": "_Something went wrong, try this format:_ [#] [badge] *to* @[person] *for* [reason]",
+            "mrkdwn_in": [
+                "text",
+            ]
+          }
+        ]
+      }
    end
 end
 
