@@ -1,6 +1,6 @@
 module Parser
   RGX = /(?<quantity>\A\d+,?\d*) (?<badge>.+(?= to @)) to (?<recipient>@\S+) (?<reason>.+)$/
-  def self.get_badge_data(message)
+  def self.get_feedback_data(message)
     match_data = RGX.match(message)
 
 
