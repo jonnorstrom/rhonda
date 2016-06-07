@@ -59,10 +59,10 @@ class Feedback < ActiveRecord::Base
 
   def make_positive_response
     {
-      "response_type": "ephemeral",
+      "response_type": "in_channel",
       "attachments": [
          {
-           "text": "<@#{sender_id} gave <@#{recipient_id}> some #{badge} #{reason}",
+           "text": "<@#{sender_id}> gave <@#{recipient_id}> some #{badge} #{reason}",
            "mrkdwn_in": [
                "text",
            ]
