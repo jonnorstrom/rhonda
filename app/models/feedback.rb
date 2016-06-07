@@ -1,5 +1,6 @@
 class Feedback < ActiveRecord::Base
   validates :recipient,
+            :recipient_id,
             :sender,
             :sender_id,
             :team_domain,
