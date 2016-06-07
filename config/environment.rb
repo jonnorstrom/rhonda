@@ -5,6 +5,7 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 # Require gems we care about
 require 'rubygems'
 
+require 'dotenv'
 require 'uri'
 require 'pathname'
 
@@ -21,6 +22,7 @@ require 'json'
 require 'csv'
 require 'timeout'
 
+Dotenv.load
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
