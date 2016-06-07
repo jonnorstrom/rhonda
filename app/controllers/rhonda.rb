@@ -18,9 +18,9 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge],
                        schema_version: 1.1)
-  #  uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_TOKEN"]}&pretty=1")
-  #  response = Net::HTTP.get_response(uri)
-  #  user_response = JSON.parse(response.body)
+   uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_USERS_TOKEN"]}&pretty=1")
+   response = Net::HTTP.get_response(uri)
+   p user_response = JSON.parse(response.body)
   #  user_response[:members].each do |member|
   #    if member[:name] == badge.recipient
   #      badge.recipient_id = member[:id]
