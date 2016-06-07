@@ -16,4 +16,12 @@ class Feedback < ActiveRecord::Base
   presence: true
 
   # Remember to create a migration!
+  def check_match(team_members)
+    team_members.each do |member|
+      if member["name"] == self.recipient
+        self.recipient_id = member["id"]
+      end
+    end
+  end
+
 end

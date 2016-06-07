@@ -18,20 +18,19 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge],
                        schema_version: 1.1)
-  uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_USERS_TOKEN"]}&pretty=1")
-  response = Net::HTTP.get_response(uri)
+  ## formats the string, and makes the Net HTTP request
+  response = Net::HTTP.get_response(Uri.make_string)
   user_response = JSON.parse(response.body)
-  user_response["members"].each do |member|
-    if member["name"] == badge.recipient
-      badge.recipient_id = member["id"]
-    end
-  end
+
+  ## checks the response for all the members and finds the member that was named in the badge
+  ## then assigns the badge.recipient_id to that users id from the API resopnse
+  badge.check_match(user_response["members"])
 
   if badge.save
    uri = URI(badge.response_url)
    req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
    req.body = {
-     "response_type": "in-channel",
+     "response_type": "in_channel",
      "attachments": [
         {
           "text": "_Thank you for your feedback!_ You gave <@#{badge.recipient_id}> some #{badge.badge} #{badge.reason}",
