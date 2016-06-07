@@ -22,8 +22,7 @@ post '/badge' do
   response = Net::HTTP.get_response(uri)
   user_response = JSON.parse(response.body)
   p "BADGE RECIPIENT -- #{badge.recipient}"
-  user_response
-  user_response[:members].each do |member|
+  user_response["members"].each do |member|
   p "MEMBER -- #{member}"
     # if member[:name] == badge.recipient
     #   badge.recipient_id = member[:id]
