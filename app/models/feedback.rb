@@ -41,9 +41,9 @@ class Feedback < ActiveRecord::Base
 
     ## checks the response for all the members and finds the member that was named in the feedback
     ## then assigns the feedback.recipient_id to that users id from the API resopnse
-    feedback.check_match(user_response["members"])
+    check_match(user_response["members"])
 
-    uri = URI(feedback.response_url)
+    uri = URI(response_url)
     req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
 
     req.body = response_body
