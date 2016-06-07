@@ -21,11 +21,9 @@ post '/badge' do
   uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_USERS_TOKEN"]}&pretty=1")
   response = Net::HTTP.get_response(uri)
   user_response = JSON.parse(response.body)
-  p "BADGE RECIPIENT -- #{badge.recipient}"
   user_response["members"].each do |member|
-  p "MEMBER -- #{member["name"]}"
-    if member[:name] == badge.recipient
-      # badge.recipient_id = member[:id]
+    if member["name"] == badge.recipient
+      badge.recipient_id = member[:id]
       p "HEY THEY MATCH"
     end
   end
