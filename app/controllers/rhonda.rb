@@ -44,7 +44,11 @@ post '/badge' do
         http.request(req)
       end
    else
-     {"attachments": [
+     uri = URI(badge.response_url)
+     req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
+     req.body = {
+       "response_type": "ephemeral",
+       "attachments": [
           {
             "text": "_Something went wrong, try this format:_ [#] [badge] *to* @[person] *for* [reason]",
             "mrkdwn_in": [
@@ -52,7 +56,10 @@ post '/badge' do
             ]
           }
         ]
-      }
+      }.to_json
+      Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+        http.request(req)
+      end
    end
 end
 
