@@ -31,10 +31,10 @@ post '/badge' do
    uri = URI(badge.response_url)
    req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
    req.body = {
-     "response_type": "ephemeral",
+     "response_type": "in-channel",
      "attachments": [
         {
-          "text": "_Thank you for your feedback!_ You gave #{badge.recipient} some #{badge.badge} #{badge.reason}",
+          "text": "_Thank you for your feedback!_ You gave <@#{badge.recipient_id}> some #{badge.badge} #{badge.reason}",
           "mrkdwn_in": [
               "text",
           ]
