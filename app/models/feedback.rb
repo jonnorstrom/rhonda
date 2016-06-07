@@ -24,6 +24,16 @@ class Feedback < ActiveRecord::Base
     end
   end
 
+  def add_recipient_id
+    ## formats the string, and makes the Net HTTP request
+    response = Net::HTTP.get_response(Uri.make_string)
+    user_response = JSON.parse(response.body)
+
+    ## checks the response for all the members and finds the member that was named in the feedback
+    ## then assigns the feedback.recipient_id to that users id from the API resopnse
+    check_match(user_response["members"])
+  end
+
   def send_feedback_to_slack
     send_request_to_slack(make_positive_response)
   end
@@ -35,13 +45,7 @@ class Feedback < ActiveRecord::Base
   private
 
   def send_request_to_slack(response_body)
-    ## formats the string, and makes the Net HTTP request
-    response = Net::HTTP.get_response(Uri.make_string)
-    user_response = JSON.parse(response.body)
 
-    ## checks the response for all the members and finds the member that was named in the feedback
-    ## then assigns the feedback.recipient_id to that users id from the API resopnse
-    check_match(user_response["members"])
 
     uri = URI(response_url)
     req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})

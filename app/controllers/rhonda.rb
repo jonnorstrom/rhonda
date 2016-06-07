@@ -18,6 +18,9 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge],
                        schema_version: 1.1)
+
+  feedback.add_recipient_id
+
   if feedback.save
     feedback.send_feedback_to_slack
   else
