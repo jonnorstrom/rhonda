@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'shotgun'
+gem 'json'
 gem 'dotenv'
 gem 'rake'
-gem 'activerecord'
 gem 'activesupport'
-gem 'json'
+gem 'activerecord'
 gem 'pry'
+gem 'shotgun'
 # PostgreSQL driver
 gem 'pg'
 
