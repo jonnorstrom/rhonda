@@ -1,7 +1,7 @@
-# rhonda
+# rhonda (v 1.0)
 A SlackApp for quick, semantic feedback
 
-By [Trev](http://trev.com/about/) & [Jon](https://www.linkedin.com/in/norstromjonathan)
+By [Jon](https://www.linkedin.com/in/norstromjonathan)
 ___
 This is meant for leaving quick, anonymous feedback within your teammates on any given [Slack](https://slack.com/) Channel.
 
