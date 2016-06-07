@@ -45,8 +45,6 @@ class Feedback < ActiveRecord::Base
   private
 
   def send_request_to_slack(response_body)
-
-
     uri = URI(response_url)
     req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
 
@@ -84,6 +82,4 @@ class Feedback < ActiveRecord::Base
        ]
      }.to_json
   end
-
-
 end
