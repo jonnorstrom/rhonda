@@ -18,15 +18,17 @@ post '/badge' do
                        reason: info_hash[:reason],
                        badge: info_hash[:badge],
                        schema_version: 1.1)
-  p ENV["SLACK_USERS_TOKEN"]
   uri = URI("https://slack.com/api/users.list?token=#{ENV["SLACK_USERS_TOKEN"]}&pretty=1")
   response = Net::HTTP.get_response(uri)
   user_response = JSON.parse(response.body)
-  #  user_response[:members].each do |member|
-  #    if member[:name] == badge.recipient
-  #      badge.recipient_id = member[:id]
-  #    end
-  #  end
+  p "BADGE RECIPIENT -- #{badge.recipient}"
+  user_response[:members].each do |member|
+    p "MEMBER NAME -- #{member[:name]}"
+    if member[:name] == badge.recipient
+      badge.recipient_id = member[:id]
+    end
+  end
+
   if badge.save
    uri = URI(badge.response_url)
    req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
