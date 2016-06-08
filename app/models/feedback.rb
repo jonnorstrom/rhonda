@@ -60,6 +60,7 @@ class Feedback < ActiveRecord::Base
       "response_type": "in_channel",
       "attachments": [
          {
+           "fallback": "#{sender} gave #{recipient} some feedback!",
            "text": "<@#{sender_id}> gave <@#{recipient_id}> some #{badge} #{reason}",
            "mrkdwn_in": [
                "text",
@@ -74,6 +75,7 @@ class Feedback < ActiveRecord::Base
       "response_type": "ephemeral",
       "attachments": [
          {
+           "fallback": "_Something went wrong, try this format:_ [#] [badge] *to* @[person] *for* [reason]",
            "text": "_Something went wrong, try this format:_ [#] [badge] *to* @[person] *for* [reason]",
            "mrkdwn_in": [
                "text",
