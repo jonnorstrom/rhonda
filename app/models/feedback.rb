@@ -15,7 +15,7 @@ class Feedback < ActiveRecord::Base
             :schema_version,
   presence: true
 
-  # Remember to create a migration!
+  ## checks list of people on team to find the person mentioned, then adds their user ID to the database object
   def check_match(team_members)
     team_members.each do |member|
       if member["name"] == recipient
@@ -34,16 +34,20 @@ class Feedback < ActiveRecord::Base
     check_match(user_response["members"])
   end
 
+  ## will send proper message back to slack
   def send_feedback_to_slack
     send_request_to_slack(make_positive_response)
   end
 
+  ## will send proper error back to slack, likely because parser didn't pick up the right data.
+  ## this should also help eliminate unwanted 500 errors
   def send_error_to_slack
     send_request_to_slack(make_error_response)
   end
 
   private
 
+  ## this method is the one that actually sends the response back to slack
   def send_request_to_slack(response_body)
     uri = URI(response_url)
     req = Net::HTTP::Post.new(uri, {'Content-Type' =>'application/json'})
